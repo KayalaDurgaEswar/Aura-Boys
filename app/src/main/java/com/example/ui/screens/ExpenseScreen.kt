@@ -200,7 +200,7 @@ fun ExpenseScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(horizontal = 14.dp),
-                contentPadding = PaddingValues(top = 8.dp, bottom = 90.dp)
+                contentPadding = PaddingValues(top = 8.dp, bottom = 140.dp)
             ) {
                 // Summary Header Card (Scrolls up with the list)
                 item {
@@ -290,33 +290,56 @@ fun ExpenseScreen(
 
                 if (filteredExpenses.isEmpty()) {
                     item {
-                        Box(
+                        Card(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(24.dp),
-                            contentAlignment = Alignment.Center
+                                .padding(vertical = 16.dp, horizontal = 2.dp),
+                            shape = RoundedCornerShape(16.dp),
+                            colors = CardDefaults.cardColors(containerColor = NaturalSurface),
+                            border = BorderStroke(1.dp, NaturalBorderLight)
                         ) {
-                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                Icon(
-                                    imageVector = Icons.Default.Receipt,
-                                    contentDescription = null,
-                                    tint = NaturalTextMuted,
-                                    modifier = Modifier.size(48.dp)
-                                )
-                                Spacer(modifier = Modifier.height(8.dp))
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(32.dp),
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(54.dp)
+                                        .background(NaturalSandPill, CircleShape),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.ReceiptLong,
+                                        contentDescription = null,
+                                        tint = NaturalTextMuted,
+                                        modifier = Modifier.size(28.dp)
+                                    )
+                                }
+                                Spacer(modifier = Modifier.height(12.dp))
                                 Text(
-                                    text = "No expenses recorded under this filter",
+                                    text = if (searchQuery.isNotBlank()) "No expenses found for \"$searchQuery\"" else "No expenses recorded under this category",
+                                    color = EarthBrown,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 14.sp,
+                                    textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                                )
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    text = "All committee festival bills will appear here in the ledger.",
                                     color = NaturalTextMuted,
-                                    fontSize = 14.sp
+                                    fontSize = 12.sp,
+                                    textAlign = androidx.compose.ui.text.style.TextAlign.Center
                                 )
                                 if (isAdminMode) {
-                                    Spacer(modifier = Modifier.height(8.dp))
+                                    Spacer(modifier = Modifier.height(16.dp))
                                     Button(
                                         onClick = onAddExpenseClick,
                                         colors = ButtonDefaults.buttonColors(containerColor = EarthBrown),
                                         shape = RoundedCornerShape(10.dp)
                                     ) {
-                                        Text("+ Record Bill", color = NaturalCreamBg)
+                                        Text("+ Record New Bill", color = NaturalCreamBg, fontWeight = FontWeight.Bold)
                                     }
                                 }
                             }
@@ -445,9 +468,9 @@ fun ExpenseItemCard(
                 )
             }
 
-            Spacer(modifier = Modifier.height(6.dp))
+            Spacer(modifier = Modifier.height(8.dp))
             HorizontalDivider(color = NaturalBorderLight, thickness = 0.8.dp)
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(6.dp))
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -455,18 +478,43 @@ fun ExpenseItemCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = dateStr,
-                    fontSize = 10.sp,
+                    text = "📅 $dateStr",
+                    fontSize = 11.sp,
                     color = NaturalTextMuted
                 )
 
                 if (isAdminMode) {
-                    Row {
-                        IconButton(onClick = onEdit, modifier = Modifier.size(26.dp).testTag("edit_expense_${expense.id}")) {
-                            Icon(imageVector = Icons.Default.Edit, contentDescription = "Edit", tint = NaturalTextMuted, modifier = Modifier.size(14.dp))
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        IconButton(
+                            onClick = onEdit,
+                            modifier = Modifier
+                                .size(32.dp)
+                                .background(NaturalSandPill, CircleShape)
+                                .testTag("edit_expense_${expense.id}")
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Edit,
+                                contentDescription = "Edit Expense",
+                                tint = EarthBrown,
+                                modifier = Modifier.size(16.dp)
+                            )
                         }
-                        IconButton(onClick = onDelete, modifier = Modifier.size(26.dp).testTag("delete_expense_${expense.id}")) {
-                            Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete", tint = NaturalTextMuted, modifier = Modifier.size(14.dp))
+                        IconButton(
+                            onClick = onDelete,
+                            modifier = Modifier
+                                .size(32.dp)
+                                .background(NaturalRed.copy(alpha = 0.12f), CircleShape)
+                                .testTag("delete_expense_${expense.id}")
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Delete,
+                                contentDescription = "Delete Expense",
+                                tint = NaturalRed,
+                                modifier = Modifier.size(16.dp)
+                            )
                         }
                     }
                 }

@@ -371,7 +371,6 @@ fun GaneshApp(viewModel: GaneshViewModel) {
             isAdminMode = uiState.isAdminMode,
             isMainAdmin = uiState.isMainAdmin,
             currentAdminName = uiState.currentAdminName,
-            approvedMembers = approvedAdminRequests,
             onLoginMainAdmin = { user, pass -> viewModel.loginAsMainAdmin(user, pass) },
             onLoginAuthorizedAdmin = { name -> viewModel.loginAsAuthorizedAdmin(name) },
             onRequestAdminClick = { viewModel.openRequestAdminDialog() },

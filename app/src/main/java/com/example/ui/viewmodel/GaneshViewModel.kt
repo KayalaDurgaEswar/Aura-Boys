@@ -72,14 +72,13 @@ class GaneshViewModel(application: Application) : AndroidViewModel(application) 
 
         // Initial cloud sync on startup
         viewModelScope.launch {
-            kotlinx.coroutines.delay(800)
             repository.syncWithCloud("App Startup")
         }
 
-        // Periodic background poll every 45s for fresh updates across all devices
+        // Periodic background poll every 20s for fresh updates across all devices
         viewModelScope.launch {
             while (true) {
-                kotlinx.coroutines.delay(45000)
+                kotlinx.coroutines.delay(20000)
                 try {
                     repository.syncWithCloud("Background Poll")
                 } catch (e: Exception) {
@@ -170,6 +169,7 @@ class GaneshViewModel(application: Application) : AndroidViewModel(application) 
     // Navigation and Filtering
     fun selectTab(tab: NavigationTab) {
         _uiState.update { it.copy(selectedTab = tab) }
+        syncNow(silent = true)
     }
 
     fun setChandaFilter(filter: ChandaFilter) {

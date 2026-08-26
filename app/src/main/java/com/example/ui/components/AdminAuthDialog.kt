@@ -80,7 +80,6 @@ fun AdminAuthDialog(
     isAdminMode: Boolean,
     isMainAdmin: Boolean,
     currentAdminName: String,
-    approvedMembers: List<AdminRequest> = emptyList(),
     onLoginMainAdmin: (String, String) -> Boolean,
     onLoginAuthorizedAdmin: (String) -> Boolean,
     onRequestAdminClick: () -> Unit,

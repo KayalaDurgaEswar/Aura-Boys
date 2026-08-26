@@ -307,7 +307,7 @@ fun ChandaScreen(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(horizontal = 14.dp),
-                    contentPadding = androidx.compose.foundation.layout.PaddingValues(top = 10.dp, bottom = 90.dp)
+                    contentPadding = androidx.compose.foundation.layout.PaddingValues(top = 10.dp, bottom = 140.dp)
                 ) {
                     items(filteredDonors, key = { it.id }) { donor ->
                         DonorItemCard(

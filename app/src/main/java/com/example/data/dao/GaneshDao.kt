@@ -198,26 +198,31 @@ interface GaneshDao {
         adminRequests: List<AdminRequest>,
         settings: List<AppSetting>
     ) {
+        deleteAllDonors()
         if (donors.isNotEmpty()) {
-            deleteAllDonors()
             insertAllDonors(donors)
         }
+
+        deleteAllExpenses()
         if (expenses.isNotEmpty()) {
-            deleteAllExpenses()
             insertAllExpenses(expenses)
         }
+
+        deleteAllEvents()
         if (events.isNotEmpty()) {
-            deleteAllEvents()
             insertAllEvents(events)
         }
+
+        deleteAllSamagri()
         if (samagri.isNotEmpty()) {
-            deleteAllSamagri()
             insertAllSamagri(samagri)
         }
+
+        deleteAllAdminRequests()
         if (adminRequests.isNotEmpty()) {
-            deleteAllAdminRequests()
             insertAllAdminRequests(adminRequests)
         }
+
         if (settings.isNotEmpty()) {
             setSettings(settings)
         }

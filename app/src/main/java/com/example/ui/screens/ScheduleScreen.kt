@@ -81,7 +81,7 @@ fun ScheduleScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(horizontal = 16.dp),
-            contentPadding = androidx.compose.foundation.layout.PaddingValues(top = 12.dp, bottom = 90.dp)
+            contentPadding = androidx.compose.foundation.layout.PaddingValues(top = 12.dp, bottom = 140.dp)
         ) {
             // Daily Routine Card
             item {

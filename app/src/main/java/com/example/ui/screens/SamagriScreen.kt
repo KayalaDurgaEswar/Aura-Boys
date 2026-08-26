@@ -183,7 +183,7 @@ fun SamagriScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(horizontal = 16.dp),
-                contentPadding = androidx.compose.foundation.layout.PaddingValues(bottom = 90.dp)
+                contentPadding = androidx.compose.foundation.layout.PaddingValues(bottom = 140.dp)
             ) {
                 items(filteredList, key = { it.id }) { item ->
                     SamagriItemCard(

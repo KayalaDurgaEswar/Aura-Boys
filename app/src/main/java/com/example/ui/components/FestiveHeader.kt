@@ -184,33 +184,35 @@ fun FestiveTopAppBar(
                         )
                     }
 
-                    // Notification Icon with Badge for Admin Requests
-                    IconButton(
-                        onClick = onNotificationsClick,
-                        modifier = Modifier
-                            .size(38.dp)
-                            .clip(CircleShape)
-                            .background(NaturalSandPill)
-                            .testTag("admin_notifications_button")
-                    ) {
-                        BadgedBox(
-                            badge = {
-                                if (pendingAdminRequestsCount > 0) {
-                                    Badge(
-                                        containerColor = NaturalTerracotta,
-                                        contentColor = Color.White
-                                    ) {
-                                        Text("$pendingAdminRequestsCount", fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                    // Notification Icon with Badge for Admin Requests (ONLY Visible to Main Admin)
+                    if (isMainAdmin) {
+                        IconButton(
+                            onClick = onNotificationsClick,
+                            modifier = Modifier
+                                .size(38.dp)
+                                .clip(CircleShape)
+                                .background(NaturalSandPill)
+                                .testTag("admin_notifications_button")
+                        ) {
+                            BadgedBox(
+                                badge = {
+                                    if (pendingAdminRequestsCount > 0) {
+                                        Badge(
+                                            containerColor = NaturalTerracotta,
+                                            contentColor = Color.White
+                                        ) {
+                                            Text("$pendingAdminRequestsCount", fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                                        }
                                     }
                                 }
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Notifications,
+                                    contentDescription = "Admin Requests Notifications",
+                                    tint = if (pendingAdminRequestsCount > 0) NaturalTerracotta else EarthBrown,
+                                    modifier = Modifier.size(20.dp)
+                                )
                             }
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.Notifications,
-                                contentDescription = "Admin Requests Notifications",
-                                tint = if (pendingAdminRequestsCount > 0) NaturalTerracotta else EarthBrown,
-                                modifier = Modifier.size(20.dp)
-                            )
                         }
                     }
 
