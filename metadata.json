@@ -1,0 +1,7 @@
+{
+  "name": "Aura Boys",
+  "description": "Aura Boys Ganesh Utsav festival manager featuring Chanda (donation) collection tracking, expense logging, samagri checklist, member & admin authorization workflow, digital receipts, and festival timetable.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
